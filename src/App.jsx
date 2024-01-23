@@ -33,7 +33,7 @@ export default function App() {
     //3. css degiskenlerini guncelleme
     updateCssVariables()
   }
-  //4.css degiskenlerini guncelleyen fonksiyon
+  //4.css degiskenlerini guncelleyen fonksiyon yazak
   const updateCssVariables = () => {
     document.documentElement.style.setProperty(
       '--brightness',
