@@ -7,6 +7,9 @@ export default function App() {
     contrast: 1,
     saturation: 1,
   })
+  const [selectedImage, setSelectedImage] = useState(
+    './images/kunal-goswami-CuUn__aMGD4-unsplash.jpg'
+  )
 
   /* Challenge
 
@@ -45,6 +48,22 @@ export default function App() {
       filter.saturation
     )
   }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    const imageUrl = URL.createObjectURL(file)
+    setSelectedImage(imageUrl)
+
+    // Ek olarak, yeni bir fotoğraf seçildiğinde filtreleri sıfırlayabilirsiniz:
+    setFilter({
+      brightness: 1,
+      contrast: 1,
+      saturation: 1,
+    })
+
+    // Sıfırlanan filtreleri CSS değişkenlerine de uygulayabilirsiniz:
+    updateCssVariables()
+  }
+
   return (
     <div className="main-container">
       <h1>
@@ -52,12 +71,19 @@ export default function App() {
       </h1>
 
       <div className="image-container">
-        <img src="./images/kunal-goswami-CuUn__aMGD4-unsplash.jpg" />
+        <img src={selectedImage} alt="Selected" />
       </div>
 
       <form>
         {/* 5. Range input'ları */}
         <label>
+          <input
+            className="dosyasec-container"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+
           <input
             type="range"
             name="brightness"
